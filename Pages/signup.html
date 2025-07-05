@@ -1,12 +1,15 @@
-
 <div class="hero-scene text-center text-white">
     <div class="hero-scene-content">
-        <h1>Connexion</h1>
+        <h1>Inscription</h1>
     </div>
 </div>
 
 <div class="container ">
     <form>
+        <div class="mb-3">
+            <label for="PseudoInput" class="form-label">Pseudo</label>
+            <input type="text" class="form-control" id="PseudoInput" name="pseudo" placeholder="Votre pseudo">
+        </div>
         <div class="mb-3">
             <label for="EmailInput" class="form-label">Email</label>
             <input type="email" class="form-control" id="EmailInput" name="email" placeholder="Votre email" required>
@@ -14,13 +17,16 @@
         <div class="mb-3">
             <label for="PasswordInput" class="form-label">Mot de passe</label>
             <input type="password" class="form-control" id="PasswordInput" name="password" placeholder="Votre mot de passe" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required>
+            <div class="form-text">8 caractères minimum, dont 1 majuscule, 1 chiffre et 1 caractère spécial</div>
+        </div>
+        <div class="text-center mt-5 mb-5">
+            <p>A la création de votre compte, vous recevez 20 crédits offerts !</p>
         </div>
         <div class="text-center row1 pt-3">
-            <button type="submit" class="btn btn-primary col-12">Connexion</button>
+            <button type="submit" class="btn btn-primary col-12">Créer un compte</button>
         </div>
     </form>
     <div class="text-center pt-3 ">
-        <a href="/signup">Vous n'avez pas de compte ? Inscrivez-vous ici</a>
+        <a href="/signin">Déjà un compte ? Se connecter</a>
     </div>
 </div>
-
