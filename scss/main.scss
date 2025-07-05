@@ -25,6 +25,7 @@ p {
 .hero-scene {
  background-image: url('../images/pathway-3596034_1280.jpg');
  background-size: cover; 
+ margin-bottom: 15px;
 }
 
 .hero-scene-content {
@@ -47,6 +48,10 @@ background-size: cover;
 
 .text-justify {
   text-align: justify
+}
+
+.form-label{
+  color: $primary
 }
 
 

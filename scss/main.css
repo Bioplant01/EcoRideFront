@@ -11999,6 +11999,7 @@ p {
 .hero-scene {
   background-image: url("../images/pathway-3596034_1280.jpg");
   background-size: cover;
+  margin-bottom: 15px;
 }
 
 .hero-scene-content {
@@ -12020,4 +12021,8 @@ p {
 
 .text-justify {
   text-align: justify;
+}
+
+.form-label {
+  color: #2C5F34;
 }/*# sourceMappingURL=main.css.map */
