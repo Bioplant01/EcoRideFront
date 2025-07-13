@@ -6,24 +6,46 @@
 
 <div class="container ">
     <form>
-        <div class="mb-3">
+        <div class="mb-3 mt-5">
             <label for="PseudoInput" class="form-label">Pseudo</label>
-            <input type="text" class="form-control" id="PseudoInput" name="pseudo" placeholder="Votre pseudo">
+            <input type="text" class="form-control" id="PseudoInput" name="pseudo" placeholder="Votre pseudo" required>
+            <div class="invalid-feedback">
+                le pseudo est requis.
+            </div>
         </div>
         <div class="mb-3">
             <label for="EmailInput" class="form-label">Email</label>
             <input type="email" class="form-control" id="EmailInput" name="email" placeholder="Votre email" required>
+            <div class="invalid-feedback">
+                Veuillez entrer une adresse email valide.
+            </div>
+            <div class="valid-feedback">
+                Email valide.
+            </div>
         </div>
         <div class="mb-3">
             <label for="PasswordInput" class="form-label">Mot de passe</label>
-            <input type="password" class="form-control" id="PasswordInput" name="password" placeholder="Votre mot de passe" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required>
-            <div class="form-text">8 caractères minimum, dont 1 majuscule, 1 chiffre et 1 caractère spécial</div>
+            <input type="password" class="form-control" id="PasswordInput" name="password" placeholder="Votre mot de passe" required>
+            <div class="invalid-feedback">
+                Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule et un chiffre. 
+            </div>  
+            <div class="valid-feedback">
+                Mot de passe valide.
+            </div>
+        </div>
+        <div class="mb-3 mt-3">
+            <label for="ValidatePasswordInput" class="form-label">Confirmez votre mot de passe</label>
+            <input type="password" class="form-control" id="ValidatePasswordInput" name="validatepassword" placeholder="Confirmez votre mot de passe" required>
+            <div class="invalid-feedback">
+                Le mot de passe doit être identique.
+            </div>
+
         </div>
         <div class="text-center mt-5 mb-5">
             <p>A la création de votre compte, vous recevez 20 crédits offerts !</p>
         </div>
         <div class="text-center row1 pt-3">
-            <button type="submit" class="btn btn-primary col-12">Créer un compte</button>
+            <button type="submit" class="btn btn-primary col-12" id="btn-creercompte">Créer un compte</button>
         </div>
     </form>
     <div class="text-center pt-3 ">
