@@ -12025,4 +12025,13 @@ p {
 
 .form-label {
   color: #2C5F34;
+}
+
+.trajet-eco {
+  border-left: 4px solid #28a745;
+  background-color: #A5DBA7;
+}
+
+.trajet {
+  display: block;
 }/*# sourceMappingURL=main.css.map */

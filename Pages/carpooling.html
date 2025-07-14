@@ -1,0 +1,156 @@
+
+
+<body class="bg-light py-4">
+<div class="hero-scene text-center text-white">
+    <div class="hero-scene-content">
+        <h1>Covoiturage</h1>  
+    </div>
+</div>
+
+<div class="container pt-5">
+    <!-- 🔍 Formulaire de recherche -->
+  <form id="searchForm" class="border bg-white p-4 rounded mb-5">
+    <div class="row g-3">
+      <div class="col-md-4">
+        <label class="form-label">Ville de départ</label>
+        <input type="text" class="form-control" id="villeDepart" placeholder="Paris" required>
+        <div class="invalid-feedback">
+          Veuillez entrer une ville de départ.
+        </div>
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Ville d’arrivée</label>
+        <input type="text" class="form-control" id="villeArrivee" placeholder="Lyon" required>
+        <div class="invalid-feedback">
+          Veuillez entrer une ville d’arrivée.
+        </div>
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Date du voyage</label>
+        <input type="date" class="form-control" id="dateVoyage" placeholder="Sélectionnez une date" title="Date du voyage" required>
+        <div class="invalid-feedback">
+          Veuillez sélectionner une date de voyage.
+        </div>
+      </div>
+    </div>
+    <div class="text-end mt-4">
+      <button type="submit" class="btn btn-primary" id="btn-validation">Recherhcher</button>
+    </div>
+  </form>
+
+  <!-- 🚌 Résultats (masqués par défaut) -->
+  <div id="resultats" class="d-none">
+    
+
+  <!-- 🔘 Titre + Filtres bouton -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h4 class="mb-0">Itinéraires disponibles</h4>
+    <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#filtreZone">
+      Filtres
+    </button>
+  </div>
+
+  <!-- 🔽 Zone filtres masquée par défaut -->
+  <div class="collapse mb-4" id="filtreZone">
+    <div class="border p-4 bg-white rounded">
+      <div class="row g-3">
+        <div class="col-md-3">
+          <label class="form-label">Prix maximum (€)</label>
+          <input type="number" id="prixMax" class="form-control" placeholder="Ex: 25">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Durée max (minutes)</label>
+          <input type="number" id="dureeMax" class="form-control" placeholder="Ex: 180">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Note minimale</label>
+          <input type="number" step="0.1" max="5" min="0" id="noteMin" class="form-control" placeholder="Ex: 4.5">
+        </div>
+        <div class="col-md-3 d-flex align-items-center">
+          <div class="form-check mt-4">
+            <input class="form-check-input" type="checkbox" id="ecoOnly">
+            <label class="form-check-label" for="ecoOnly">Uniquement écologiques</label>
+          </div>
+        </div>
+      </div>
+      <div class="text-end mt-3">
+        <button class="btn btn-primary" onclick="appliquerFiltres()">Appliquer les filtres</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🚌 Liste des trajets -->
+  <div id="listeTrajets">
+    <!-- Trajet 1 - Écologique -->
+    <div class="card mb-3 trajet trajet-eco" data-prix="20" data-duree="180" data-note="4.8" data-eco="true">
+      <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-center">
+        <div class="d-flex align-items-center gap-3">
+          <img src="/images/homme.jpg" class="rounded-circle" alt="JeanEcolo">
+          <div>
+            <strong>JeanEcolo</strong><br>
+            ⭐ 4.8 / 5<br>
+            🚗 Électrique – Voyage écologique
+          </div>
+        </div>
+        <div class="text-center">
+          <p>08h00 – Paris</p>
+          <p>11h00 – Lyon</p>
+          <p>Places restantes : 2</p>
+          <p class="fw-bold text-primary">20 €</p>
+        </div>
+        <a href="/détails carpooling.html?conducteur=JeanEcolo" class="btn btn-outline-primary" role="button">Détail</a>
+      </div>
+    </div>
+
+    <!-- Trajet 2 - Non écologique -->
+    <div class="card mb-3 trajet" data-prix="22" data-duree="210" data-note="4.2" data-eco="false">
+      <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-center">
+        <div class="d-flex align-items-center gap-3">
+          <img src="/images/woman.jpg" class="rounded-circle" alt="LauraConfort">
+          <div>
+            <strong>LauraConfort</strong><br>
+            ⭐ 4.2 / 5<br>
+            🚘 Essence – Voyage classique
+          </div>
+        </div>
+        <div class="text-center">
+          <p>09h30 – Paris</p>
+          <p>13h00 – Lyon</p>
+          <p>Places restantes : 1</p>
+          <p class="fw-bold text-primary">22 €</p>
+        </div>
+        <a href="/détails carpooling.html?conducteur=LauraConfort" class="btn btn-outline-primary" role="button">Détail</a>
+      </div>
+    </div>
+
+    <!-- Trajet 3 - Électrique -->
+    <div class="card mb-3 trajet trajet-eco" data-prix="18" data-duree="150" data-note="5.0" data-eco="true">
+      <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-center">
+        <div class="d-flex align-items-center gap-3">
+          <img src="/images/woman 2.jpg" class="rounded-circle" alt="SarahGreen">
+          <div>
+            <strong>SarahGreen</strong><br>
+            ⭐ 5.0 / 5<br>
+            🚗 Électrique – Voyage écologique
+          </div>
+        </div>
+        <div class="text-center">
+          <p>10h00 – Marseille</p>
+          <p>12h30 – Nice</p>
+          <p>Places restantes : 3</p>
+          <p class="fw-bold text-primary">18 €</p>
+        </div>
+        <a href="/détails carpooling.html?conducteur=SarahGreen" class="btn btn-outline-primary" role="button">Détail</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ❌ Message Aucun résultat -->
+  <div id="noResults" class="alert alert-warning d-none">
+    Aucun covoiturage disponible à cette date.
+    <br>💡 Essayez de modifier votre date pour : <strong id="dateSuggestion">demain</strong>
+  </div>
+</div>
+
+</body>
