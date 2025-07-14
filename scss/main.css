@@ -12034,4 +12034,8 @@ p {
 
 .trajet {
   display: block;
+}
+
+.hidden {
+  display: none;
 }/*# sourceMappingURL=main.css.map */

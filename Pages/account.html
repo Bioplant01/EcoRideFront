@@ -1,0 +1,297 @@
+<body class="bg-light py-4">
+<div class="hero-scene text-center text-white">
+    <div class="hero-scene-content">
+        <h1>Compte</h1>  
+    </div>
+</div>
+<!-- Modal pour ajouter un nouveau véhicule -->
+<div class="modal fade" id="addVehicleModal" tabindex="-1" aria-labelledby="addVehicleLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="newVehicleForm">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addVehicleLabel">Ajouter un nouveau véhicule</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body row g-3">
+          <div class="col-6">
+            <label class="form-label">Plaque</label>
+            <input type="text" class="form-control" id="nv_plaque" required>
+          </div>
+          <div class="col-6">
+            <label class="form-label">Couleur</label>
+            <input type="text" class="form-control" id="nv_couleur" required>
+          </div>
+          <div class="col-6">
+            <label class="form-label">Marque</label>
+            <input type="text" class="form-control" id="nv_marque" required>
+          </div>
+          <div class="col-6">
+            <label class="form-label">Modèle</label>
+            <input type="text" class="form-control" id="nv_modele" required>
+          </div>
+          <div class="col-12">
+            <label class="form-label">Énergie</label>
+            <select id="nv_energie" class="form-select" required>
+              <option value="" disabled selected>Choisir</option>
+              <option>Essence</option>
+              <option>Diesel</option>
+              <option>Électrique</option>
+              <option>Hybride</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning text-white" data-bs-dismiss="modal">Annuler</button>
+          <button type="submit" class="btn btn-primary">Ajouter</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Fin du modal -->
+<body class="bg-light py-5">
+  <div class="container pt-3">
+    
+    <!-- Choix du rôle -->
+    <div class="mb-4">
+      <label class="form-label fw-bold" for="roleSelector">Je suis :</label>
+      <select class="form-select" id="roleSelector" onchange="toggleVehicleForm()">
+        <option value="chauffeur">Chauffeur</option>
+        <option value="passager">Passager</option>
+        <option value="les-deux">Chauffeur et passager</option>
+      </select>
+    </div>
+
+    <!-- Formulaire véhicule (masqué si passager) -->
+    <form id="vehicleForm" class="border rounded p-4 bg-white">
+      <h5 class="mb-3">Informations du véhicule</h5>
+
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="plaque" class="form-label">Plaque d'immatriculation</label>
+          <input type="text" id="plaque" class="form-control" placeholder="AB-123-CD">
+        </div>
+        <div class="col-md-6">
+          <label for="dateImmat" class="form-label">Date de première immatriculation</label>
+          <input type="date" id="dateImmat" class="form-control">
+        </div>
+        <div class="col-md-6">
+          <label for="marque" class="form-label">Marque</label>
+          <input type="text" id="marque" class="form-control" placeholder="Renault, Peugeot...">
+        </div>
+        <div class="col-md-6">
+          <label for="modele" class="form-label">Modèle</label>
+          <input type="text" id="modele" class="form-control" placeholder="Clio, 208...">
+        </div>
+        <div class="col-md-6">
+          <label for="couleur" class="form-label">Couleur</label>
+          <input type="text" id="couleur" class="form-control" placeholder="Bleu, gris...">
+        </div>
+        <div class="col-md-6">
+          <label for="places" class="form-label">Nombre de places disponibles</label>
+          <input type="number" id="places" class="form-control" min="1" max="7" placeholder="Nombre de places">
+        </div>
+        <div class="col-12">
+          <label for="preferences" class="form-label">Préférences</label>
+          <textarea id="preferences" class="form-control" rows="2" placeholder="Musique, silence, animaux autorisés..."></textarea>
+        </div>
+        <div class="col-md-6">
+          <label for="animalsOnBoard" class="form-label">Animaux à bord</label>
+          <select id="animalsOnBoard" class="form-select">
+            <option value="sans" selected>Sans animaux</option>
+            <option value="avec">Avec animaux</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label for="smokerSelect" class="form-label">Fumeur</label>
+          <select id="smokerSelect" class="form-select">
+            <option value="non-fumeur" selected>Non-fumeur</option>
+            <option value="fumeur">Fumeur</option>
+          </select>
+        </div>
+      </div>
+    </form>
+
+    <!-- Boutons -->
+    <div class="text-center pt-4">
+      <button type="submit" class="btn btn-primary me-3 col-3">Valider</button>
+      <button type="reset" class="btn btn-warning text-white col-3">Annuler</button>
+    </div>
+
+    <!-- ✅ Formulaire de création de voyage (visible uniquement pour les chauffeurs ou les deux) -->
+    <form id="tripForm" class="border rounded p-4 bg-white mt-4 d-none">
+        <h5 class="mb-3">Proposer un voyage</h5>
+
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">Adresse de départ</label>
+                <input type="text" class="form-control" placeholder="Adresse de départ">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Adresse d’arrivée</label>
+                <input type="text" class="form-control" placeholder="Adresse d’arrivée">
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Date</label>
+                <input type="date" class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Heure de départ</label>
+                <input type="time" class="form-control">
+            </div>
+
+             <div class="col-md-6">
+                <label class="form-label">Prix (€)</label>
+                <input type="number" class="form-control" min="0" step="0.5" placeholder="Ex: 12.5">
+                <small class="text-muted">⚠️ 2 crédits seront prélevés par la plateforme.</small>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Véhicule</label>
+                <select class="form-select" id="vehiculeSelect">
+                <option selected disabled>Choisissez un véhicule</option>
+                <option>Clio - Renault</option>
+                <option>Model 3 - Tesla</option>
+                <option value="new">Ajouter un nouveau véhicule</option>
+            </select>
+
+            </div>
+        </div>
+
+        <div class="text-end mt-3">
+            <button type="submit" class="btn btn-primary">Publier le voyage</button>
+        </div>
+    </form>
+
+
+
+
+</div>
+
+  <!-- ✅ Section de gestion des covoiturages à venir -->
+
+    <div class="container  mt-5">
+
+      <h2 class="mb-3">🚗 Mes covoiturages à venir</h2>
+
+      <div class="table-responsive">
+
+      <table class="table table-bordered table-hover align-middle bg-white">
+        <thead class="table-light">
+          <tr class="text-center">
+            <th>Départ</th>
+            <th>Arrivée</th>
+            <th>Date</th>
+            <th>Heure</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="tripsTable">
+          <tr>
+            <td>Paris</td>
+            <td>Lille</td>
+            <td>2025-07-10</td>
+            <td>08:00</td>
+            <td class="status">Prévu</td>
+            <td class="places text-center">
+              <button id="demarrerBtn" class="btn btn-sm btn-primary" onclick="demarrerTrajet(this)">Démarrer</button>
+              <button class="btn btn-sm btn-warning text-white" onclick="annulerCovoiturage(this, true)">Annuler</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div id="validationSection" class="hidden mt-5">
+        <h4 class="mb-3">✔️ Validation du trajet (Passager)</h4>
+        <p>Veuillez confirmer que le trajet s’est bien déroulé :</p>
+
+        <div class="mb-3">
+          <label class="form-label">Comment s’est passé le trajet ?</label>
+          <select class="form-select" id="trajetStatus" onchange="toggleAvis()">
+            <option value="">Choisissez</option>
+            <option value="ok">Tout s’est bien passé</option>
+            <option value="probleme">Un problème a eu lieu</option>
+          </select>
+        </div>
+
+        <div id="avisSection" class="hidden">
+          <label class="form-label">Note (1 à 5)</label>
+          <input type="number" class="form-control mb-2" min="1" max="5" id="note">
+          <label class="form-label">Avis</label>
+          <textarea class="form-control mb-2" id="commentaire" placeholder="Commentaire..."></textarea>
+        </div>
+
+        <div id="problemeSection" class="hidden">
+          <label class="form-label text-danger">Décrivez le problème rencontré</label>
+          <textarea class="form-control" id="problemeCommentaire" rows="3" required></textarea>
+        </div>
+
+        <button class="btn btn-success mt-3" onclick="validerTrajet()">Valider</button>
+      </div>
+      </div>
+
+      <div class="mt-4 text-muted container">
+        💳 Crédits du chauffeur : <span id="creditChauffeur">20</span>
+      </div>
+    <!-- ✅ Historique des covoiturages -->
+     <div class="container mt-5">
+        <h2 class="mb-3">📋 Historique de mes covoiturages</h2>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle bg-white">
+                <thead class="table-light">
+                    <tr class="text-center">
+                        <th>Type</th>
+                        <th>Départ</th>
+                        <th>Arrivée</th>
+                        <th>Date</th>
+                        <th>Heure</th>
+                        <th>Places</th>
+                        <th>Crédits</th>
+                        
+                        </tr>
+                </thead>
+                <tbody id="historyTable">
+                    <tr>
+                        <td>Conducteur</td>
+                        <td>Paris</td>
+                        <td>Lyon</td>
+                        <td>2025-07-10</td>
+                        <td>09:00</td>
+                        <td class="places text-center">2</td>
+                        <td class="credits text-center">5</td>
+                      
+                    </tr>
+                    <tr>
+                        <td>Passager</td>
+                        <td>Bordeaux</td>
+                        <td>Toulouse</td>
+                        <td>2025-07-15</td>
+                        <td>14:00</td>
+                        <td class="places text-center">1</td>
+                        <td class="credits text-center">3</td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="creditInfo" class="text-muted small mt-2 text-end">
+            💳 Crédit actuel : <span id="userCredit">20</span>
+        </div>
+    </div>
+  </div>
+
+
+
+      <!-- Lien -->
+  <div class="text-center pt-3">
+    <a href="/editPassword">Modifier mon mot de passe</a>
+  </div>
+  
+</div>
+</body>
