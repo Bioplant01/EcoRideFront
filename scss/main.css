@@ -12038,4 +12038,21 @@ p {
 
 .hidden {
   display: none;
+}
+
+/* Empêche tout débordement horizontal */
+body {
+  overflow-x: hidden;
+}
+
+/* Pour s'assurer que les tables ne débordent pas */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Fixe la largeur maximale à 100% pour tous les éléments */
+.table, .table td, .table th {
+  max-width: 100%;
+  word-wrap: break-word;
 }/*# sourceMappingURL=main.css.map */
