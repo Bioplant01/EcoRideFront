@@ -116,7 +116,7 @@
     statusCell.textContent = 'En cours';
     btn.textContent = 'Arriver à destination';
     btn.classList.remove('btn-primary');
-    btn.classList.add('btn-success');
+    btn.classList.add('btn-primary');
     btn.onclick = function() { terminerTrajet(btn); };
   }
   

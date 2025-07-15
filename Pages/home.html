@@ -26,23 +26,23 @@
     
     <div class="container pb-4">
         <h2 class="text-center text-primary">Où souhaitez-vous aller ?</h2>
-        <form class="row g-2">
+        <form  action="/carpooling" method="GET" class="row g-2">
             <div class="col-md-6">
                 <label for="DepartInput" class="form-label"></label>
-                <input type="text" class="form-control" id="DepartInput" value="Départ" required>
+                <input type="text" class="form-control" id="DepartInput" name="depart" placeholder="Départ" required>
             </div>
             <div class="col-md-6">
                 <label for="ArriveeInput" class="form-label"></label>
-                <input type="text" class="form-control" id="ArriveeInput" value="Arrivée" required>
+                <input type="text" class="form-control" id="ArriveeInput" name="arrivee" placeholder="Arrivée" required>
             </div>
             <div class="row1 pt-4">
-                <button href="/Covoiturage" class="btn btn-primary col-12" type="submit">Rechercher</button>
+                <button type="submit" class="btn btn-primary col-12">Rechercher</button>
             </div>
         </form>   
   </div>
 </section>
 
-<div class="hero-scenebottom">
+<div class="hero-scenebottom mt-5">
     <div class="hero-scene-contentbottom">
 
     </div>
