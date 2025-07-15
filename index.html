@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="scss/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -24,11 +25,14 @@
           <a class="nav-link" href="/carpooling">Covoiturage</a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" data-show="utilisateur, admin">
           <a class="nav-link" href="/account">Mon compte</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/employeeAccount">espace employé</a>
+        <li class="nav-item" data-show="employé">
+          <a class="nav-link" href="/employeeAccount">Espace employé</a>
+        </li>
+        <li class="nav-item" data-show="admin">
+          <a class="nav-link" href="/adminAccount">Espace admin</a>
         </li>
 
         <li class="nav-item" data-show="disconnected">

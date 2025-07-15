@@ -1,0 +1,128 @@
+
+<body class="bg-light py-4">
+<div class="hero-scene text-center text-white">
+    <div class="hero-scene-content">
+        <h1>Espace Administrateur</h1>  
+    </div>
+</div>
+
+  <div class="container pt-5">
+
+    <!-- Formulaire création compte employé -->
+    <div class="card mb-4">
+      <div class="card-header">Créer un compte employé</div>
+      <div class="card-body">
+        <form id="createEmployeeForm">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Nom employé</label>
+              <input type="text" class="form-control" id="NomInput" required placeholder="Entrez le nom de l'employé" title="Nom de l'employé">
+              <div class="invalid-feedback">
+                le Nom de l'employé est requis.
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" id="EmailInput" required placeholder="Entrez l'email" title="Adresse email de l'employé">
+              <div class="invalid-feedback">
+                Veuillez entrer une adresse email valide.
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Mot de passe</label>
+              <input type="password" class="form-control" id="PasswordInput" required placeholder="Entrez le mot de passe" title="Mot de passe de l'employé">
+              <div class="invalid-feedback">
+                Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule et un chiffre. 
+              </div> 
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary" id="btn-creercompte">Créer</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Graphiques -->
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">📆 Covoiturages par jour</div>
+          <div class="card-body">
+            <canvas id="ridesChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">💳 Crédits gagnés par jour</div>
+          <div class="card-body">
+            <canvas id="creditsChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Total crédits -->
+    <div class="alert alert-info text-center">
+      Total des crédits gagnés par la plateforme : <strong>320</strong> crédits
+    </div>
+
+    <!-- Tableau utilisateurs -->
+    <div class="card mb-4">
+      <div class="card-header">Utilisateurs inscrits</div>
+      <div class="card-body p-0">
+        <table class="table mb-0 table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Email</th>
+              <th>Statut</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Marie L.</td>
+              <td>marie@example.com</td>
+              <td>Actif</td>
+              <td><button type="button" class="btn btn-sm btn-warning text-white">Suspendre</button></td>
+            </tr>
+            <tr>
+              <td>Jean B.</td>
+              <td>jeanb@example.com</td>
+              <td>Actif</td>
+              <td><button type="button" class="btn btn-sm btn-warning text-white">Suspendre</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Tableau employés -->
+    <div class="card mb-5">
+      <div class="card-header">Employés</div>
+      <div class="card-body p-0">
+        <table class="table mb-0 table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Email</th>
+              <th>Statut</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Paul Admin</td>
+              <td>paul@ecoride.com</td>
+              <td>Actif</td>
+              <td><button type="button" class="btn btn-sm btn-warning text-white">Suspendre</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>

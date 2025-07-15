@@ -1,32 +1,60 @@
-//recuperation des éléments du DOM
-const inputPseudo = document.getElementById("PseudoInput");
+    //recuperation des éléments du DOM
+const inputNom = document.getElementById("NomInput");
 const inputMail = document.getElementById("EmailInput");
 const inputPassword = document.getElementById("PasswordInput");
-const inputValidatePassword = document.getElementById("ValidatePasswordInput");
 const btnValidation = document.getElementById("btn-creercompte");
 
 // Ajout d'un écouteur d'événement 
-inputPseudo.addEventListener("keyup", validateForm); 
+inputNom.addEventListener("keyup", validateForm); 
 inputMail.addEventListener("keyup", validateForm);
 inputPassword.addEventListener("keyup", validateForm);
-inputValidatePassword.addEventListener("keyup", validateForm);
+    
+    
+    
+    
+    const ctx1 = document.getElementById('ridesChart').getContext('2d');
+    const ridesChart = new Chart(ctx1, {
+      type: 'line',
+      data: {
+        labels: ['04/07', '05/07', '06/07', '07/07', '08/07'],
+        datasets: [{
+          label: 'Covoiturages',
+          data: [12, 18, 10, 25, 19],
+          backgroundColor: 'rgba(25, 135, 84, 0.2)',
+          borderColor: '#198754',
+          borderWidth: 2
+        }]
+      }
+    });
 
+    const ctx2 = document.getElementById('creditsChart').getContext('2d');
+    const creditsChart = new Chart(ctx2, {
+      type: 'bar',
+      data: {
+        labels: ['04/07', '05/07', '06/07', '07/07', '08/07'],
+        datasets: [{
+          label: 'Crédits gagnés',
+          data: [24, 36, 20, 50, 38],
+          backgroundColor: '#0d6efd'
+        }]
+      }
+    })
+
+    
 //Function permettant de valider tout le formulaire
 function validateForm(){
-    const pseudoOK = validateRequired(inputPseudo);
+    const nomOK = validateRequired(inputNom);
     const mailOK = validateMail(inputMail);
     const passwordOK = validatePassword(inputPassword);
-    const passwordConfirmOK = validateConfirmationPassword(inputPassword, inputValidatePassword);
     
     
-    if(pseudoOK && mailOK && passwordOK && passwordConfirmOK){
+    if(nomOK && mailOK && passwordOK){
         btnValidation.disabled = false;
     }
     else{
         btnValidation.disabled = true;
     }    
 }
-
 
 //Function permettant de valider l'email
 function validateMail(input){
@@ -64,21 +92,6 @@ function validatePassword(input){
     }
 }
 
-//Function permettant de valider le mot de passe de confirmation
-function validateConfirmationPassword(inputPwd, inputConfirmPwd){
-    // Vérification si le mot de passe de confirmation correspond au mot de passe
-    if(inputPwd.value === inputConfirmPwd.value){
-        inputConfirmPwd.classList.add("is-valid");
-        inputConfirmPwd.classList.remove("is-invalid");
-        return true;
-    }
-    else{
-        inputConfirmPwd.classList.remove("is-valid");
-        inputConfirmPwd.classList.add("is-invalid");
-        return false;
-    }
-}
-
  //Function permettant de valider les champs requis
 function validateRequired(input){
     if(input.value != ''){
@@ -92,4 +105,3 @@ function validateRequired(input){
         return false;
     }
 }
-
