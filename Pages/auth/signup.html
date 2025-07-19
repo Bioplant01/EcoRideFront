@@ -12,6 +12,14 @@
             <div class="invalid-feedback">
                 le pseudo est requis.
             </div>
+        <div class="mb-3">
+            <label for="NomInput" class="form-label">Nom</label>
+            <input type="text" class="form-control" id="NomInput" name="nom" placeholder="Votre nom">
+        </div>
+        <div class="mb-3">
+            <label for="PrenomInput" class="form-label">Prenom</label>
+            <input type="text" class="form-control" id="PrenomInput" name="prenom" placeholder="Votre prenom">
+        </div>            
         </div>
         <div class="mb-3">
             <label for="EmailInput" class="form-label">Email</label>
@@ -39,7 +47,10 @@
             <div class="invalid-feedback">
                 Le mot de passe doit être identique.
             </div>
-
+        <div class="mb-3 mt-3">
+            <label for="PhotoInput" class="form-label">Photo de profil</label>
+            <input type="file" class="form-control" id="PhotoInput" name="photo" accept="image/*" enctype="multipart/form-data">
+        </div>
         </div>
         <div class="text-center mt-5 mb-5">
             <p>A la création de votre compte, vous recevez 20 crédits offerts !</p>
