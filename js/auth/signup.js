@@ -1,15 +1,20 @@
 //recuperation des éléments du DOM
+const inputPrenom = document.getElementById("PrenomInput");
+const inputNom = document.getElementById("NomInput");
 const inputPseudo = document.getElementById("PseudoInput");
 const inputMail = document.getElementById("EmailInput");
 const inputPassword = document.getElementById("PasswordInput");
 const inputValidatePassword = document.getElementById("ValidatePasswordInput");
 const btnValidation = document.getElementById("btn-creercompte");
+const formCreercompte = document.getElementById("formulaireCreercompte");
 
 // Ajout d'un écouteur d'événement 
 inputPseudo.addEventListener("keyup", validateForm); 
-inputMail.addEventListener("keyup", validateForm);
+inputMail.addEventListener("keyup", validateForm); 
 inputPassword.addEventListener("keyup", validateForm);
 inputValidatePassword.addEventListener("keyup", validateForm);
+
+btnValidation.addEventListener("click", creercompte);
 
 //Function permettant de valider tout le formulaire
 function validateForm(){
@@ -91,5 +96,43 @@ function validateRequired(input){
         input.classList.add("is-invalid");
         return false;
     }
+}
+
+function creercompte() {
+    
+    
+  const formData = {
+    nom: inputNom.value,
+    prenom: inputPrenom.value,
+    pseudo: inputPseudo.value,
+    email: inputMail.value,
+    password: inputPassword.value,
+    photo: "", // a laisser vide si ce n’est pas géré côté API
+
+  };
+
+  fetch("http://127.0.0.1:8000/api/utilisateurs", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    body: JSON.stringify(formData)
+  })
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`Erreur API : ${response.status}`);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    console.log("✅ Compte créé :", data);
+    alert("Bravo "+inputPrenom.value+", compte créé avec succès !");
+    window.location.href = '/signin';
+  })
+  .catch((error) => {
+    console.error("❌ Erreur création compte :", error);
+    alert("Erreur lors de la création du compte.");
+  });
 }
 
