@@ -1,10 +1,17 @@
 
-const tokenCookieName = "accesstoken";
+const tokenCookieName = "token";
 const roleCookieName = "role";
 const signoutBtn = document.getElementById("signout-btn");
+const apiUrl="http://127.0.0.1:8000/api/";
 
 
 signoutBtn.addEventListener("click", signout);
+
+function normalizeRole(rawRole) {
+    // Exemple : "ROLE_UTILISATEUR" => "utilisateur"
+    return rawRole?.toLowerCase().replace("role_", "") || "";
+}
+
 
 function getRole() {
     return getCookie(roleCookieName);
@@ -74,41 +81,40 @@ connected (admin, utilisateur, employé)
 */
 
 // Fonction pour afficher ou masquer des éléments en fonction du rôle de l'utilisateur
-function showAndHideElementsForRoles(){
+function showAndHideElementsForRoles() {
     const userConnected = isConnected();
-    const role = getRole();
+    const role = normalizeRole(getRole()); // doit retourner "admin", "utilisateur", "employé"
 
-    let allElementsToEdit = document.querySelectorAll('[data-show]');
+    const allElementsToEdit = document.querySelectorAll('[data-show]');
 
-    allElementsToEdit.forEach(element =>{
-        switch(element.dataset.show){
-            case 'disconnected': 
-                if(userConnected){
-                    element.classList.add("d-none");
-                }
-                break;
-            case 'connected': 
-                if(!userConnected){
-                    element.classList.add("d-none");
-                }
-                break;
-            case 'admin': 
-                if(!userConnected || role != "admin"){
-                    element.classList.add("d-none");
-                }
-                break;
-            case 'utilisateur': 
-                if(!userConnected || role != "utilisateur"){
-                    element.classList.add("d-none");
-                }
-                break;
-            case 'employé': 
-                if(!userConnected || role != "employé"){
-                    element.classList.add("d-none");
-                }
-                break;                
+    allElementsToEdit.forEach(element => {
+        const roles = element.dataset.show.split(",").map(r => r.trim());
+
+        let shouldShow = false;
+
+        roles.forEach(r => {
+            switch (r) {
+                case "disconnected":
+                    if (!userConnected) shouldShow = true;
+                    break;
+                case "connected":
+                    if (userConnected) shouldShow = true;
+                    break;
+                case "admin":
+                case "utilisateur":
+                case "employé":
+                    if (userConnected && role === r) shouldShow = true;
+                    break;
+            }
+        });
+
+        if (shouldShow) {
+            element.classList.remove("d-none");
+        } else {
+            element.classList.add("d-none");
         }
-    })
+    });
 }
+
 
 

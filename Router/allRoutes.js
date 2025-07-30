@@ -9,7 +9,7 @@ export const allRoutes = [
     new Route("/carpooling", "Covoiturage", "/Pages/carpooling.html", [], "/JS/carpooling.js",),
     new Route("/editPassword", "Modifier mot de passe", "/Pages/auth/editPassword.html", ["utilisateur", "employé", "admin"]),
     new Route("/carpoolingDetails", "Détails du covoiturage", "/Pages/carpoolingDetails.html", [], "/JS/carpoolingDetails.js"),
-    new Route("/employeeAccount", "Espace Employé", "/Pages/employeeAccount.html", ["employé","admin"]),
+    new Route("/employeeAccount", "Espace Employé", "/Pages/employeeAccount.html", ["admin"]),
     new Route("/adminAccount", "Espace Admin", "/Pages/adminAccount.html", ["admin"], "/JS/adminAccount.js"),
 ];
 

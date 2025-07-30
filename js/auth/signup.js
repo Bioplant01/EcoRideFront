@@ -111,7 +111,7 @@ function creercompte() {
 
   };
 
-  fetch("http://127.0.0.1:8000/api/utilisateurs", {
+  fetch(apiUrl+"utilisateurs", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
